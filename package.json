@@ -7,7 +7,6 @@
   "main": "index.ts",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles",
-    "tsc": "cross-env NODE_ENV=development tsc",
     "dev": "cross-env NODE_ENV=development nodemon src/index.ts",
     "postinstall": "prisma generate",
     "build": "rimraf dist && tsc",
@@ -20,9 +19,9 @@
     "prisma-seed-test": "dotenv -e .env.test -- npx prisma db seed"
   },
   "pre-commit": [
-      "ts.check",
-      "build",
-      "add-build"
+    "ts.check",
+    "build",
+    "add-build"
   ],
   "keywords": [],
   "author": "",
