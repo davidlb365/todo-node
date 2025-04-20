@@ -1,5 +1,5 @@
 import "dotenv/config";
-import express from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import { todosRouter } from "./routes/todos";
 import { authRouter } from "./routes/auth";
@@ -24,6 +24,11 @@ app.use(
 //         name: 'task 3'
 //     }
 // ]
+
+app.get("/", (_req: Request, res: Response) => {
+  res.send("Express Typescript on Vercel");
+  return;
+});
 
 app.use("/api/todos", todosRouter);
 app.use("/api/auth", authRouter);
