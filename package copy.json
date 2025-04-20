@@ -9,14 +9,20 @@
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles",
     "dev": "cross-env NODE_ENV=development nodemon src/index.ts",
     "postinstall": "prisma generate",
-    "build": "tsc",
+    "build": "rimraf dist && tsc",
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist",
     "migrate:test": "dotenv -e .env.test -- npx prisma migrate dev",
     "migrate:dev": "dotenv -e .env -- npx prisma migrate dev",
     "migrate:deploy": "dotenv -e .env -- npx prisma migrate deploy",
     "prisma-seed": "npx prisma db seed",
-    "prisma-seed-test": "dotenv -e .env.test -- npx prisma db seed",
-    "vercel-build": "echo hello"
+    "prisma-seed-test": "dotenv -e .env.test -- npx prisma db seed"
   },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
