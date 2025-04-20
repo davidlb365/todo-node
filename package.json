@@ -9,7 +9,7 @@
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles",
     "tsc": "cross-env NODE_ENV=development tsc",
     "dev": "cross-env NODE_ENV=development nodemon src/index.ts",
-    "build": "rimraf dist && tsc",
+    "build": "rimraf dist && prisma generate && tsc",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist",
     "migrate:test": "dotenv -e .env.test -- npx prisma migrate dev",
